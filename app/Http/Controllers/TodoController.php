@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class TodoController extends Controller
 {
     public function index(){
-        return view('ajax_todo.index');
+        $todos = Todo::all();
+        return view('ajax_todo.index', compact('todos'));
     }
 
     public function create(Request $request){

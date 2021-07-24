@@ -14,12 +14,10 @@
                     </div>
                     @csrf
                     <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Cras justo odio</li>
-                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Dapibus ac facilisis in</li>
-                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Morbi leo risus</li>
-                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Porta ac consectetur ac</li>
-                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Vestibulum at eros</li>
+                        <ul class="list-group" id="items">
+                            @foreach($todos as $todo)
+                            <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">{{ $todo->item }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -43,7 +41,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" id="delete_btn">Delete</button>
                     <button type="button" class="btn btn-info" id="update_btn">Save changes</button>
-                    <button type="button" class="btn btn-primary" id="add_btn">Add Item</button>
+                    <button type="button" class="btn btn-primary" id="add_btn" data-dismiss="modal">Add Item</button>
                 </div>
             </div>
         </div>
@@ -53,18 +51,17 @@
 @section('custom_js')
     <script>
         $(document).ready(function(){
-            $('.todo-item').each(function (){
-                $(this).click(function (event){
-                    let text = $(this).text();
-                    $('#item_input').val(text)
-                    $('#title').text('Edit Item')
-                    $('#delete_btn').show()
-                    $('#update_btn').show()
-                    $('#add_btn').hide()
-                })
+            $(document).on('click', '.todo-item', function (event){
+                let text = $(this).text();
+                $('#item_input').val(text)
+                $('#title').text('Edit Item')
+                $('#delete_btn').show()
+                $('#update_btn').show()
+                $('#add_btn').hide()
             })
 
-            $('#addNewItem').click(function (event){
+
+            $(document).on('click', '#addNewItem', function (event) {
                 $('#item_input').val('')
                 $('#title').text('Add New Item')
                 $('#delete_btn').hide()
@@ -78,6 +75,7 @@
                 $.post('add_todo', {'inputValue': inputValue, '_token': $('input[name=_token]').val()}, function (data){
                     console.log(data)
                 })
+                $('#items').load(location.href + ' #items')
             })
 
         })
