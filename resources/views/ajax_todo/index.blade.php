@@ -8,10 +8,11 @@
                     <div class="card-header">
                         <h4 class="float-left">Ajax Todo</h4>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal" id="addNewItem">
                             <h5>+</h5>
                         </button>
                     </div>
+                    @csrf
                     <div class="card-body">
                         <ul class="list-group">
                             <li class="list-group-item todo-item" data-toggle="modal" data-target="#exampleModal">Cras justo odio</li>
@@ -40,9 +41,9 @@
                     <input type="text" class="form-control" placeholder="Enter Item" id="item_input" name="item_input">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" id="delete-btn">Delete</button>
-                    <button type="button" class="btn btn-info" id="update-btn">Save changes</button>
-                    <button type="button" class="btn btn-primary" id="add-btn">Add Item</button>
+                    <button type="button" class="btn btn-warning" id="delete_btn">Delete</button>
+                    <button type="button" class="btn btn-info" id="update_btn">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="add_btn">Add Item</button>
                 </div>
             </div>
         </div>
@@ -57,11 +58,30 @@
                     let text = $(this).text();
                     $('#item_input').val(text)
                     $('#title').text('Edit Item')
-                    $('#delete-btn').show()
-                    $('#update-btn').show()
-                    $('#add-btn').hide()
+                    $('#delete_btn').show()
+                    $('#update_btn').show()
+                    $('#add_btn').hide()
                 })
             })
+
+            $('#addNewItem').click(function (event){
+                $('#item_input').val('')
+                $('#title').text('Add New Item')
+                $('#delete_btn').hide()
+                $('#update_btn').hide()
+                $('#add_btn').show()
+            })
+
+            $('#add_btn').click(function (event){
+                let inputValue = $('#item_input').val();
+                console.log(inputValue)
+                $.post('add_todo', {'inputValue': inputValue, '_token': $('input[name=_token]').val()}, function (data){
+                    console.log(data)
+                })
+            })
+
         })
+
+
     </script>
 @endsection

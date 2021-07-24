@@ -25,7 +25,7 @@
             <a href="{{ route('login') }}">Login</a>
         </h1>
         <h1>
-            <a href="{{ route('login') }}">Ajax Todo</a>
+            <a href="{{ route('ajax_todo') }}">Ajax Todo</a>
         </h1>
     </body>
 </html>

@@ -26,3 +26,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('admin/login', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin.login');
+
+
+Route::get('/ajax_todo', [App\Http\Controllers\TodoController::class, 'index'])->name('ajax_todo');
+Route::post('/add_todo', [App\Http\Controllers\TodoController::class, 'create'])->name('add_todo');
