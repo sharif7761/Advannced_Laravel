@@ -18,4 +18,10 @@ class TodoController extends Controller
         $todo->save();
         return 'done';
     }
+
+    public function delete(Request $request){
+        $todo = Todo::findOrFail($request->id);
+        $todo->delete();
+        return 'done';
+    }
 }
