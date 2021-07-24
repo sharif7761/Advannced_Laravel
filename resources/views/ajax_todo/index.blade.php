@@ -43,7 +43,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" id="delete_btn" data-dismiss="modal">Delete</button>
-                    <button type="button" class="btn btn-info" id="update_btn">Save changes</button>
+                    <button type="button" class="btn btn-info" id="update_btn" data-dismiss="modal">Save changes</button>
                     <button type="button" class="btn btn-primary" id="add_btn" data-dismiss="modal">Add Item</button>
                 </div>
             </div>
@@ -86,7 +86,14 @@
                 $.post('delete_todo', {'id': id, '_token': $('input[name=_token]').val()}, function (data){
                 })
                 $('#items').load(location.href + ' #items')
+            })
 
+            $('#update_btn').click(function (event){
+                let id = $('#item_id').val();
+                let inputValue = $('#item_input').val();
+                $.post('update_todo', {'id': id, 'inputValue': inputValue, '_token': $('input[name=_token]').val()}, function (data){
+                })
+                $('#items').load(location.href + ' #items')
             })
 
 

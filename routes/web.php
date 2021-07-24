@@ -31,3 +31,4 @@ Route::get('admin/login', [App\Http\Controllers\Admin\LoginController::class, 's
 Route::get('/ajax_todo', [App\Http\Controllers\TodoController::class, 'index'])->name('ajax_todo');
 Route::post('/add_todo', [App\Http\Controllers\TodoController::class, 'create'])->name('add_todo');
 Route::post('/delete_todo', [App\Http\Controllers\TodoController::class, 'delete'])->name('delete_todo');
+Route::post('/update_todo', [App\Http\Controllers\TodoController::class, 'update'])->name('update_todo');
