@@ -32,3 +32,6 @@ Route::get('/ajax_todo', [App\Http\Controllers\TodoController::class, 'index'])-
 Route::post('/add_todo', [App\Http\Controllers\TodoController::class, 'create'])->name('add_todo');
 Route::post('/delete_todo', [App\Http\Controllers\TodoController::class, 'delete'])->name('delete_todo');
 Route::post('/update_todo', [App\Http\Controllers\TodoController::class, 'update'])->name('update_todo');
+
+Route::get('/form_validation', [App\Http\Controllers\FormController::class, 'index'])->name('form_validation');
+Route::post('/form_validation', [App\Http\Controllers\FormController::class, 'store'])->name('form_validation');
