@@ -2,8 +2,16 @@
 
 @section('content')
     <div class="container">
-        <div class="col-6 offset-3">
-            <form action="" method="post">
+        <div class="col-6 offset-3 mt-5">
+            @if($errors)
+                @foreach($errors->all() as $error)
+                <p class="alert alert-danger">{{ $error }}</p>
+                @endforeach
+            @endif
+            @if(Session::has('message'))
+                <p class="alert alert-success">{{ Session::get('message') }}</p>
+            @endif
+            <form action="{{ route('form_validation') }}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
