@@ -30,5 +30,8 @@
         <h1>
             <a href="{{ route('form_validation') }}">Form validation with custom message</a>
         </h1>
+        <h1>
+            <a href="{{ route('recaptcha') }}">Recaptcha</a>
+        </h1>
     </body>
 </html>
