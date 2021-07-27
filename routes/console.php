@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('Hello2', function () {
+    $this->info('Hello this is custom hello2 command from sharif');
+})->purpose('custom hello2 command from sharif');
