@@ -37,3 +37,6 @@ Route::get('/form_validation', [App\Http\Controllers\FormController::class, 'ind
 Route::post('/form_validation', [App\Http\Controllers\FormController::class, 'store'])->name('form_validation');
 Route::get('/recaptcha', [App\Http\Controllers\FormController::class, 'recaptchaIndex'])->name('recaptcha');
 Route::post('/recaptcha', [App\Http\Controllers\FormController::class, 'recaptchaStore'])->name('recaptcha');
+
+Route::get('/locale/{lang?}', [App\Http\Controllers\CommonController::class, 'localeIndex'])->name('locale');
+
