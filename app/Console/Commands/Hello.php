@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class Hello extends Command
@@ -11,7 +13,7 @@ class Hello extends Command
      *
      * @var string
      */
-    protected $signature = 'Hello';
+    protected $signature = 'Hello {firstName=Sharif} {--L|lastName=Ahmed}';
 
     /**
      * The console command description.
@@ -37,6 +39,20 @@ class Hello extends Command
      */
     public function handle()
     {
-        return 0;
+        $fname= $this->argument('firstName');
+        $lname= $this->option('lastName');
+        $this->info($fname. ' '.$lname);
+        $username = $this->ask('What is your username?');
+        $this->info($username);
+        $pass = $this->secret('What is your password?');
+        $confirm = $this->confirm('Want to print your password?');
+        if($confirm){
+            $this->error($pass);
+        }
+
+        $header = ['Name', 'Email'];
+        $user = User::select('name', 'email')->get();
+        $this->table($header, $user);
+
     }
 }
