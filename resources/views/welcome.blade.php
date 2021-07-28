@@ -36,5 +36,8 @@
         <h1>
             <a href="{{ route('locale') }}">Multi language</a>
         </h1>
+        <h1>
+            <a href="{{ route('queue') }}">Queue</a>
+        </h1>
     </body>
 </html>

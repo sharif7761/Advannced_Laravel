@@ -40,3 +40,6 @@ Route::post('/recaptcha', [App\Http\Controllers\FormController::class, 'recaptch
 
 Route::get('/locale/{lang?}', [App\Http\Controllers\CommonController::class, 'localeIndex'])->name('locale');
 
+Route::get('/queue', [App\Http\Controllers\CommonController::class, 'queueIndex'])->name('queue');
+Route::get('/send_mail', [App\Http\Controllers\CommonController::class, 'sendMail'])->name('send_mail');
+
