@@ -43,3 +43,5 @@ Route::get('/locale/{lang?}', [App\Http\Controllers\CommonController::class, 'lo
 Route::get('/queue', [App\Http\Controllers\CommonController::class, 'queueIndex'])->name('queue');
 Route::get('/send_mail', [App\Http\Controllers\CommonController::class, 'sendMail'])->name('send_mail');
 
+Route::get('/event', [App\Http\Controllers\CommonController::class, 'event'])->name('event');
+
