@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('subscribers-only', function (User $user) {
+            if($user->subscriber == User::SUBSCRIBED) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 }

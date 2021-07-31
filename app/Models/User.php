@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    CONST SUBSCRIBED = 1;
+    CONST NOT_SUBSCRIBED = 0;
+
     use HasFactory, Notifiable;
 
     /**
