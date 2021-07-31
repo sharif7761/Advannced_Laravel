@@ -36,6 +36,11 @@ class CommonController extends Controller
         if (Gate::allows('subscribers-only', Auth::user())) {
             return view('gates.index');
         }
+    }
 
+    public function premiumPolicies(){
+        if (Gate::allows('premium_members_only', Auth::user())) {
+            return view('policies.index');
+        }
     }
 }

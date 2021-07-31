@@ -46,4 +46,5 @@ Route::get('/send_mail', [App\Http\Controllers\CommonController::class, 'sendMai
 Route::get('/event', [App\Http\Controllers\CommonController::class, 'event'])->name('event');
 
 Route::get('/subscribe', [App\Http\Controllers\CommonController::class, 'subscribeGate'])->name('subscribe');
+Route::get('/premium', [App\Http\Controllers\CommonController::class, 'premiumPolicies'])->name('premium');
 

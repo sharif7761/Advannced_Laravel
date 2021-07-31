@@ -12,6 +12,9 @@ class User extends Authenticatable
     CONST SUBSCRIBED = 1;
     CONST NOT_SUBSCRIBED = 0;
 
+    CONST PREMIUM_MEMBER = 1;
+    CONST REGULAR_MEMBER = 0;
+
     use HasFactory, Notifiable;
 
     /**
