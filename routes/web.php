@@ -48,3 +48,5 @@ Route::get('/event', [App\Http\Controllers\CommonController::class, 'event'])->n
 Route::get('/subscribe', [App\Http\Controllers\CommonController::class, 'subscribeGate'])->name('subscribe');
 Route::get('/premium', [App\Http\Controllers\CommonController::class, 'premiumPolicies'])->name('premium');
 
+Route::get('/notification', [App\Http\Controllers\CommonController::class, 'notification'])->name('notification');
+

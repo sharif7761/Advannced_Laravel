@@ -17,6 +17,9 @@
         <h1>
             <a href="{{ route('queue') }}">Queue</a>
         </h1>
+        <h1>
+            <a href="{{ route('notification') }}">Send Notification Mail</a>
+        </h1>
     </div>
 
 @endsection

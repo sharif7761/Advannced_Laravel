@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendMailJob;
 use App\Mail\SendEmailMailable;
+use App\Models\User;
+use App\Notifications\TaskCompleted;
 use App\Providers\TaskEvent;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -42,5 +44,10 @@ class CommonController extends Controller
         if (Gate::allows('premium_members_only', Auth::user())) {
             return view('policies.index');
         }
+    }
+
+    public function notification(){
+        User::find(1)->notify(new TaskCompleted());
+        return back()->with('message', 'Notification Mail Sent Successfully');
     }
 }
