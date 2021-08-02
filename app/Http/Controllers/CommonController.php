@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class CommonController extends Controller
 {
@@ -49,7 +50,11 @@ class CommonController extends Controller
 
     public function notification(){
         $when = Carbon::now()->addSecond(5);
-        User::find(1)->notify((new TaskCompleted)->delay($when));
+        if(Auth::user()){
+            Auth::user()->notify((new TaskCompleted)->delay($when));
+        } else {
+            Notification::route('mail', 'sharif@gmail.com')->notify((new TaskCompleted)->delay($when));
+        }
         return back()->with('message', 'Notification Mail Sent Successfully');
     }
 }
