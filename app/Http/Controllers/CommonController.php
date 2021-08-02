@@ -7,6 +7,7 @@ use App\Mail\SendEmailMailable;
 use App\Models\User;
 use App\Notifications\TaskCompleted;
 use App\Providers\TaskEvent;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -47,7 +48,8 @@ class CommonController extends Controller
     }
 
     public function notification(){
-        User::find(1)->notify(new TaskCompleted());
+        $when = Carbon::now()->addSecond(5);
+        User::find(1)->notify((new TaskCompleted)->delay($when));
         return back()->with('message', 'Notification Mail Sent Successfully');
     }
 }
