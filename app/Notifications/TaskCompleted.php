@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,13 +13,18 @@ class TaskCompleted extends Notification implements ShouldQueue
     use Queueable;
 
     /**
+     * @var User
+     */
+    public $user;
+
+    /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -41,9 +47,12 @@ class TaskCompleted extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+//                    ->line('The notification mail from sharif laravel tutorial.')
+                    ->subject('Sharif Tutorial')
+//                    ->action('Notification Action', url('/'))
+//                    ->error()
+//                    ->line('Thank you for using our application!');
+                      ->view('mail.task_mail', ['user' => $this->user]);
     }
 
     /**

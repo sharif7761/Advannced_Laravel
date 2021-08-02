@@ -51,9 +51,11 @@ class CommonController extends Controller
     public function notification(){
         $when = Carbon::now()->addSecond(5);
         if(Auth::user()){
-            Auth::user()->notify((new TaskCompleted)->delay($when));
+            $user = Auth::user();
+            $user->notify((new TaskCompleted($user))->delay($when));
         } else {
-            Notification::route('mail', 'sharif@gmail.com')->notify((new TaskCompleted)->delay($when));
+            $user = User::find(1);
+            Notification::route('mail', 'sharif@gmail.com')->notify((new TaskCompleted($user))->delay($when));
         }
         return back()->with('message', 'Notification Mail Sent Successfully');
     }
