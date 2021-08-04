@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -65,6 +66,18 @@
                                 <a class="nav-link" href="{{ route('premium') }}">{{ __('Premium') }}</a>
                             </li>
                         @endcan
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link fa fa-bell mt-1 mx-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="badge badge-light">{{ auth()->user()->notifications->count() }}</span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    @foreach(auth()->user()->notifications as $notification)
+                                        <li ><a>{{ $notification->data['data'] }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
