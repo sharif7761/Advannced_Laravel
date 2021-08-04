@@ -35,7 +35,7 @@ class TaskCompleted extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -64,7 +64,7 @@ class TaskCompleted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'data' => 'My first database notification',
         ];
     }
 }
