@@ -68,12 +68,17 @@
                         @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link fa fa-bell mt-1 mx-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <span class="badge badge-light">{{ auth()->user()->notifications->count() }}</span>
+                                    <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() ?? '0' }}</span>
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    @foreach(auth()->user()->notifications as $notification)
-                                        <li ><a>{{ $notification->data['data'] }}</a></li>
+                                    <li class="bg-white text-center mt-1"><a href="{{ route('mark_read') }}">Mark all as read</a></li>
+                                    @foreach(auth()->user()->unreadNotifications as $notification)
+                                        <li class="bg-light text-center mt-1"><a>{{ $notification->data['data'] }}</a></li>
+                                    @endforeach
+
+                                    @foreach(auth()->user()->readNotifications as $read_notification)
+                                        <li class="bg-white text-center mt-1"><a>{{ $read_notification->data['data'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

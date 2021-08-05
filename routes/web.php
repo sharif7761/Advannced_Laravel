@@ -49,4 +49,5 @@ Route::get('/subscribe', [App\Http\Controllers\CommonController::class, 'subscri
 Route::get('/premium', [App\Http\Controllers\CommonController::class, 'premiumPolicies'])->name('premium');
 
 Route::get('/notification', [App\Http\Controllers\CommonController::class, 'notification'])->name('notification');
+Route::get('/mark_read', [App\Http\Controllers\CommonController::class, 'markRead'])->name('mark_read');
 

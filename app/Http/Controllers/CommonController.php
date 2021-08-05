@@ -59,4 +59,9 @@ class CommonController extends Controller
         }
         return back()->with('message', 'Notification Mail Sent Successfully');
     }
+
+    public function markRead(){
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
+    }
 }
